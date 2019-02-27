@@ -1,9 +1,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    id: deploy
+    entrypoint: bash
     args:
-      - 'build'
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/firestore-emulator'
-      - '.'
-images:
-  - 'gcr.io/$PROJECT_ID/firestore-emulator:latest'
+      - '-c'
+      - |
+        if [[ "$BRANCH_NAME" == "master" ]]; then
+          docker build -t us.gcr.io/$PROJECT_ID/firestore-emulator .
+          docker push us.gcr.io/$PROJECT_ID/firestore-emulator
+        fi

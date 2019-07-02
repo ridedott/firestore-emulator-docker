@@ -5,6 +5,8 @@ ENV FIRESTORE_DOWNLOAD_URL=https://storage.googleapis.com/firebase-preview-drop/
 # Install Firestore emulator.
 RUN wget ${FIRESTORE_DOWNLOAD_URL} --output-document emulator.jar
 
-CMD ["java", "-jar", "./emulator.jar", "--host", "0.0.0.0", "--port", "8080"]
+ENV PORT=8080
 
-EXPOSE 8080
+CMD ["sh", "-c", "java -jar ./emulator.jar --host 0.0.0.0 --port ${PORT}"]
+
+EXPOSE ${PORT}

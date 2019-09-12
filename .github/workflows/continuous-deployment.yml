@@ -1,7 +1,7 @@
 name: Continuous Deployment
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -20,15 +20,29 @@ jobs:
             --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
             --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
             --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
+            --tag registry.hub.docker.com/ridedott/firestore-emulator:latest \
+            --tag registry.hub.docker.com/ridedott/firestore-emulator:$VERSION \
             .
       - name: Release
         env:
           GITHUB_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}
           GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_PASSWORD }}
+          DOCKER_HUB_REGISTRY_USERNAME:
+            ${{ secrets.DOCKER_HUB_REGISTRY_USERNAME }}
+          DOCKER_HUB_REGISTRY_PASSWORD:
+            ${{ secrets.DOCKER_HUB_REGISTRY_PASSWORD }}
         run: |
+          VERSION=`cat ./VERSION`
+          # GitHub Package Registry
           echo $GITHUB_REGISTRY_PASSWORD | docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password-stdin
           docker push \
             docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
-          VERSION=`cat ./VERSION`
           docker push \
             docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION
+          # Docker Hub
+          echo $DOCKER_HUB_REGISTRY_PASSWORD | docker login registry.hub.docker.com --username $DOCKER_HUB_REGISTRY_USERNAME --password-stdin
+          docker push \
+            registry.hub.docker.com/ridedott/firestore-emulator:latest
+          VERSION=`cat ./VERSION`
+          docker push \
+            registry.hub.docker.com/ridedott/firestore-emulator:$VERSION

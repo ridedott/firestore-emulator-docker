@@ -6,21 +6,19 @@ on:
       - master
 
 jobs:
-  production:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@v1
+      - name: Publish Docker Image to GPR
+        id: publish
+        uses: machine-learning-apps/gpr-docker-publish@v1.3
         with:
-          node-version: 10
-      - name: Remove postinstall hook
-        run: |
-          sed -i.bak -e '/postinstall/d' package.json
-          rm -rf package.json.bak
-      - run: npm ci --unsafe-perm
-      - run: npm run build
-      - env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: npm run deploy:production
+          USERNAME: ${{ secrets.GPR_USERNAME }}
+          PASSWORD: ${{ secrets.GPR_PASSWORD }}
+          IMAGE_NAME: 'firestore-emulator'
+          DOCKERFILE_PATH: './'
+          BUILD_CONTEXT: './'

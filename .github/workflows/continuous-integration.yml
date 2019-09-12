@@ -1,4 +1,4 @@
-name: Continuous Deployment
+name: Continuous Integration
 
 on:
   pull_request:
@@ -9,7 +9,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Docker
-        run: |
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          sh get-docker.sh
+      - name: Checkout
+          uses: actions/checkout@v1
+          with:
+            fetch-depth: 1
+      - name: GitHub Registry Login
+        run: docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password $GITHUB_REGISTRY_PASSWORD
+        env:
+          GITHUB_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}
+          GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_PASSWORD }}

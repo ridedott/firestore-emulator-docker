@@ -16,7 +16,7 @@ Minimal requirements to set up the project:
 ### Running
 
 ```bash
-docker run -d --name firestore-emulator --network localhost -e PORT=4500 -p 4500:4500 ridedott/firestore-emulator:latest 
+docker run -d --name firestore-emulator -e PORT=4500 -p 4500:4500 ridedott/firestore-emulator:latest 
 ```
 
 ## Contributing
@@ -34,8 +34,6 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 ### Automation
 
 - [GitHub Actions](https://github.com/features/actions)
-
-### Delivery
 
 ## Versioning
 

@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-          uses: actions/checkout@v1
-          with:
-            fetch-depth: 1
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
       - name: GitHub Registry Login
         env:
           GITHUB_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}

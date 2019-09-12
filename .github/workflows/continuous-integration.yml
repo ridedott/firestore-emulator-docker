@@ -1,0 +1,23 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Build
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          VERSION=`cat ./VERSION`
+          docker build \
+            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
+            .

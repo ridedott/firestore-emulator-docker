@@ -1,9 +1,9 @@
 FROM openjdk:8-jre-alpine
 
-ENV FIRESTORE_DOWNLOAD_URL=https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.8.3.jar
+ARG CLOUD_FIRESTORE_EMULATOR_VERSION
 
 # Install Firestore emulator.
-RUN wget ${FIRESTORE_DOWNLOAD_URL} --output-document emulator.jar
+RUN wget https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v${CLOUD_FIRESTORE_EMULATOR_VERSION}.jar --output-document emulator.jar
 
 ENV PORT=8080
 

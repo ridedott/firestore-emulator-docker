@@ -1,0 +1,14 @@
+version: 1
+
+update_configs:
+  - package_manager: 'docker'
+    allowed_updates:
+      - match:
+          dependency_type: 'direct'
+          update_type: 'all'
+    directory: '/'
+    update_schedule: 'daily'
+    version_requirement_updates: 'auto'
+    commit_message:
+      prefix: 'chore'
+      include_scope: true

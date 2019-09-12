@@ -13,6 +13,12 @@ Minimal requirements to set up the project:
 
 - [Docker](https://docs.docker.com/install/)
 
+### Building
+
+```bash
+docker build -t ridedott/firestore-emulator .
+```
+
 ### Running
 
 ```bash

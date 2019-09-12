@@ -14,7 +14,12 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
+        env:
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           VERSION=`cat ./VERSION`
           docker build \
-            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev .
+            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
+            -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev \
+            -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$COMMIT_SHA \
+            .

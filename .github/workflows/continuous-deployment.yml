@@ -15,10 +15,8 @@ jobs:
           fetch-depth: 1
       - name: Publish Docker Image to GPR
         id: publish
-        uses: machine-learning-apps/gpr-docker-publish@v1.3
+        uses: elgohr/Publish-Docker-Github-Action@v1.11
         with:
-          USERNAME: ${{ secrets.GPR_USERNAME }}
-          PASSWORD: ${{ secrets.GPR_PASSWORD }}
-          IMAGE_NAME: 'firestore-emulator'
-          DOCKERFILE_PATH: './'
-          BUILD_CONTEXT: './'
+          name: 'ridedott/firestore-emulator'
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

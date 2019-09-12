@@ -1,5 +1,6 @@
 This Pull Request fulfills the following requirements:
 
+- [ ] The VERSION was updated to be that of the firestore-emulator jar.
 - [ ] The commit message follows our guidelines.
 - [ ] Does not affect documentation or it has been added or updated.
 

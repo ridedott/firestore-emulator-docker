@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+
+# Cache files
+.cache
+*.cache
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables file
+.env
+
+# MacOS-specific files
+.DS_Store

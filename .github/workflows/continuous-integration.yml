@@ -17,8 +17,8 @@ jobs:
         run: docker build -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest .
       - name: Release
         env:
-          GITHUB_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}
-          GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_PASSWORD }}
+          GITHUB_REGISTRY_USERNAME: ridedott
+          GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo $GITHUB_TOKEN | docker login docker.pkg.github.com --username ridedott --password-stdin
+          echo $GITHUB_REGISTRY_PASSWORD | docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password-stdin
           docker push docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest

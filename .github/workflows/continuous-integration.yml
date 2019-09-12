@@ -14,7 +14,8 @@ jobs:
           with:
             fetch-depth: 1
       - name: GitHub Registry Login
-        run: docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password $GITHUB_REGISTRY_PASSWORD
+        run: |
+          docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password $GITHUB_REGISTRY_PASSWORD
         env:
           GITHUB_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}
           GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_PASSWORD }}

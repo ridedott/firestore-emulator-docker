@@ -18,8 +18,8 @@ jobs:
           VERSION=`cat ./VERSION`
           docker build \
             --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION
-            -tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
-            -tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
+            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
+            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
             .
       - name: Release
         env:

@@ -25,12 +25,6 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Built with
 
-### Runtime libraries
-
-### Source
-
-### Development
-
 ### Automation
 
 - [GitHub Actions](https://github.com/features/actions)

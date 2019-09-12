@@ -16,7 +16,8 @@ Minimal requirements to set up the project:
 ### Building
 
 ```bash
-docker build -t ridedott/firestore-emulator .
+VERSION = `cat ./VERSION`
+docker build --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION -t ridedott/firestore-emulator:latest .
 ```
 
 ### Running

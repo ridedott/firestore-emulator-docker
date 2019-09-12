@@ -17,6 +17,7 @@ jobs:
         run: |
           VERSION=`cat ./VERSION`
           docker build \
+            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION
             -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
             -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
             .

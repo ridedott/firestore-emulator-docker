@@ -14,4 +14,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
-        run: docker build -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev .
+        run: |
+          VERSION=`cat ./VERSION`
+          docker build \
+            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev .

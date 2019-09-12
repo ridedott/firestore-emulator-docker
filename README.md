@@ -2,6 +2,13 @@
 
 A Docker image running the Firestore Emulator.
 
+## Usage
+
+```bash
+docker pull docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
+docker run -d --name firestore-emulator -e PORT=4500 -p 4500:4500 ridedott/firestore-emulator:latest
+```
+
 ## Getting Started
 
 These instructions will get you an instance of the firestore-emulator running on your
@@ -14,13 +21,6 @@ Minimal requirements to set up the project:
 - [Docker](https://docs.docker.com/install/)
     - Make sure to
         [authenticate to Github Package registry](https://help.github.com/en/articles/configuring-docker-for-use-with-github-package-registry#authenticating-to-github-package-registry).
-        
-### Usage
-
-```bash
-docker pull docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
-docker run -d --name firestore-emulator -e PORT=4500 -p 4500:4500 ridedott/firestore-emulator:latest
-```
 
 ### Building
 

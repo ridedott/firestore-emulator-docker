@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 1
       - name: Build
         run: |
-          VERSION=cat ./VERSION
+          VERSION=`cat ./VERSION`
           docker build \
             -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
             -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
@@ -28,6 +28,6 @@ jobs:
           echo $GITHUB_REGISTRY_PASSWORD | docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password-stdin
           docker push \
             docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
-          VERSION=cat ./VERSION
+          VERSION=`cat ./VERSION`
           docker push \
             docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION

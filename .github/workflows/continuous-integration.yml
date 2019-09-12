@@ -21,4 +21,4 @@ jobs:
           GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_PASSWORD }}
         run: |
           docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password $GITHUB_REGISTRY_PASSWORD
-          docker build -t docker.pkg.github.com/ridedott/firestore-emulator:latest .
+          docker push docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest

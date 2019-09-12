@@ -27,8 +27,6 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Runtime libraries
 
-- [Ramda](https://github.com/ramda/ramda)
-
 ### Source
 
 ### Development

@@ -14,6 +14,4 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
-        run: docker build \
-          -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev \
-          .
+        run: docker build -t docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:dev .

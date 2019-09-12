@@ -6,7 +6,7 @@ A Docker image running the Firestore Emulator.
 
 ```bash
 docker pull docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
-docker run -d --name firestore-emulator -e PORT=4500 -p 4500:4500 ridedott/firestore-emulator:latest
+docker run ridedott/firestore-emulator:latest
 ```
 
 ## Getting Started

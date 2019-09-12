@@ -1,0 +1,15 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - pull_request
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Docker
+        run: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sh get-docker.sh

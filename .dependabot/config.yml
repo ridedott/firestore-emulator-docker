@@ -8,7 +8,6 @@ update_configs:
           update_type: 'all'
     directory: '/'
     update_schedule: 'daily'
-    version_requirement_updates: 'auto'
     commit_message:
       prefix: 'chore'
       include_scope: true

@@ -19,13 +19,13 @@ local machine for testing purposes.
 Minimal requirements to set up the project:
 
 - [Docker](https://docs.docker.com/install/)
-    - Make sure to
-        [authenticate to Github Package registry](https://help.github.com/en/articles/configuring-docker-for-use-with-github-package-registry#authenticating-to-github-package-registry).
+  - Make sure to
+    [authenticate to Github Package registry](https://help.github.com/en/articles/configuring-docker-for-use-with-github-package-registry#authenticating-to-github-package-registry).
 
 ### Building
 
 ```bash
-VERSION = `cat ./VERSION`
+VERSION=`cat ./VERSION`
 docker build --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION -t ridedott/firestore-emulator:latest .
 ```
 
@@ -42,4 +42,3 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 ## Versioning
 
 This project adheres to [Semantic Versioning](http://semver.org) v2.
-

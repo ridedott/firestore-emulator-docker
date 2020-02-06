@@ -7,12 +7,13 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Build
         run: |
           VERSION=`cat ./VERSION`

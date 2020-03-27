@@ -1,4 +1,4 @@
-FROM openjdk:13-slim
+FROM openjdk:14-slim
 
 ARG CLOUD_FIRESTORE_EMULATOR_VERSION
 

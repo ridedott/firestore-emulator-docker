@@ -7,6 +7,6 @@ ADD https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestor
 
 ENV PORT=8080
 
-CMD ["sh", "-c", "java -jar /emulator.jar --host 0.0.0.0 --port ${PORT}"]
+CMD ["sh", "-c", "java -server -jar /emulator.jar --host 0.0.0.0 --port ${PORT}"]
 
 EXPOSE ${PORT}

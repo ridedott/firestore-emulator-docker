@@ -15,7 +15,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - env:
+          DOCKER_BUILDKIT: 1
           GITHUB_REGISTRY_USERNAME: ${{ github.actor }}
           GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_HUB_REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_REGISTRY_USERNAME }}

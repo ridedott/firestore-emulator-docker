@@ -17,6 +17,7 @@ jobs:
       - name: Build
         run: |
           VERSION=`cat ./VERSION`
-          docker build \
+          docker buildx build \
             --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
+            --platform linux/amd64,linux/arm64 \
             .

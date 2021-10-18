@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - merlinnot/buildx
 
 jobs:
   release:
@@ -14,33 +15,26 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: Build
-        run: |
-          VERSION=`cat ./VERSION`
-          docker build \
-            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
-            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
-            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
-            --tag registry.hub.docker.com/ridedott/firestore-emulator:latest \
-            --tag registry.hub.docker.com/ridedott/firestore-emulator:$VERSION \
-            .
       - env:
           GITHUB_REGISTRY_USERNAME: ${{ github.actor }}
           GITHUB_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_HUB_REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_REGISTRY_USERNAME }}
           DOCKER_HUB_REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_REGISTRY_PASSWORD }}
-        name: Release
+        name: Build and release
         run: |
-          VERSION=`cat ./VERSION`
           # GitHub Package Registry
           echo $GITHUB_REGISTRY_PASSWORD | docker login docker.pkg.github.com --username $GITHUB_REGISTRY_USERNAME --password-stdin
-          docker push \
-            docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
-          docker push \
-            docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION
+
           # Docker Hub
           echo $DOCKER_HUB_REGISTRY_PASSWORD | docker login registry.hub.docker.com --username $DOCKER_HUB_REGISTRY_USERNAME --password-stdin
-          docker push \
-            registry.hub.docker.com/ridedott/firestore-emulator:latest
-          docker push \
-            registry.hub.docker.com/ridedott/firestore-emulator:$VERSION
+
+          VERSION=`cat ./VERSION`
+          docker buildx build \
+            --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
+            --output=type=registry \
+            --platform linux/amd64,linux/arm64 \
+            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest \
+            --tag docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:$VERSION \
+            --tag registry.hub.docker.com/ridedott/firestore-emulator:latest \
+            --tag registry.hub.docker.com/ridedott/firestore-emulator:$VERSION \
+            .

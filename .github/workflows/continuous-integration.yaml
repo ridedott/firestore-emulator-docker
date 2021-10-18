@@ -14,9 +14,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: Build
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - env:
+          DOCKER_BUILDKIT: 1
+        name: Build
         run: |
           VERSION=`cat ./VERSION`
-          docker build \
+          docker buildx build \
             --build-arg CLOUD_FIRESTORE_EMULATOR_VERSION=$VERSION \
+            --platform linux/amd64,linux/arm64 \
             .

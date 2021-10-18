@@ -4,15 +4,24 @@ A Docker image running the Firestore Emulator.
 
 ## Usage
 
+### From GitHub Packages Registry
+
 ```bash
-docker pull docker.pkg.github.com/ridedott/firestore-emulator-docker/firestore-emulator:latest
+docker pull ghcr.io/ridedott/firestore-emulator:latest
+docker run ridedott/firestore-emulator:latest
+```
+
+### Docker Hub
+
+```bash
+docker pull ridedott/firestore-emulator:latest
 docker run ridedott/firestore-emulator:latest
 ```
 
 ## Getting Started
 
-These instructions will get you an instance of the firestore-emulator running on your
-local machine for testing purposes.
+These instructions will get you an instance of the firestore-emulator running on
+your local machine for testing purposes.
 
 ### Prerequisites
 

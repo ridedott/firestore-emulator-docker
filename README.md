@@ -11,7 +11,7 @@ docker pull ghcr.io/ridedott/firestore-emulator:latest
 docker run ridedott/firestore-emulator:latest
 ```
 
-### Docker Hub
+### From Docker Hub
 
 ```bash
 docker pull ridedott/firestore-emulator:latest

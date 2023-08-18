@@ -1,4 +1,4 @@
-FROM openjdk:18-slim-bullseye
+FROM openjdk:19-slim-bullseye
 
 ARG CLOUD_FIRESTORE_EMULATOR_VERSION
 

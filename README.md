@@ -11,13 +11,6 @@ docker pull ghcr.io/ridedott/firestore-emulator:latest
 docker run ridedott/firestore-emulator:latest
 ```
 
-### From Docker Hub
-
-```bash
-docker pull ridedott/firestore-emulator:latest
-docker run ridedott/firestore-emulator:latest
-```
-
 ## Getting Started
 
 These instructions will get you an instance of the firestore-emulator running on

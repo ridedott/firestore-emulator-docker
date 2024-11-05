@@ -7,8 +7,6 @@ updates:
     directory: /
     open-pull-requests-limit: 99
     package-ecosystem: github-actions
-    reviewers:
-      - "ridedott/platform"
     schedule:
       interval: daily
   - allow:
@@ -19,8 +17,6 @@ updates:
     directory: /
     open-pull-requests-limit: 99
     package-ecosystem: docker
-    reviewers:
-      - "ridedott/platform"
     schedule:
       interval: daily
 version: 2
